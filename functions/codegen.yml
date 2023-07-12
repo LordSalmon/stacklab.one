@@ -4,10 +4,10 @@ schema:
        headers:
          X-Hasura-Admin-Secret: "nhost-admin-secret"
 generates:
-  functions/app/graphql/schema.graphql.ts:
+  app/graphql/schema.graphql.ts:
     plugins:
       - "typescript"
       - "typescript-operations"
-  functions/app/graphql/introspection.json:
+  app/graphql/introspection.json:
     plugins:
       - "introspection"
