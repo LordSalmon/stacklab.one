@@ -1,0 +1,61 @@
+{
+    "name": "functions",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "scripts": {
+        "codegen": "graphql-codegen --config codegen.yml"
+    },
+    "eslintConfig": {
+        "extends": [
+            "plugin:adonis/typescriptApp",
+            "prettier"
+        ],
+        "plugins": [
+            "prettier"
+        ],
+        "rules": {
+            "prettier/prettier": [
+                "error"
+            ],
+            "arrow-parens": [
+                "error",
+                "always"
+            ]
+        }
+    },
+    "eslintIgnore": [
+        "build"
+    ],
+    "prettier": {
+        "trailingComma": "es5",
+        "semi": true,
+        "singleQuote": false,
+        "useTabs": false,
+        "tabWidth": 4,
+        "quoteProps": "consistent",
+        "bracketSpacing": true,
+        "arrowParens": "always",
+        "printWidth": 130
+    },
+    "devDependencies": {
+        "@faker-js/faker": "^8.0.2",
+        "@graphql-codegen/cli": "^4.0.1",
+        "@graphql-codegen/introspection": "^4.0.0",
+        "@graphql-codegen/typescript-operations": "^4.0.1",
+        "@types/express": "^4.17.17",
+        "eslint": "^8.44.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-adonis": "^2.1.1",
+        "eslint-plugin-prettier": "^5.0.0",
+        "prettier": "^3.0.0"
+    },
+    "dependencies": {
+        "@nhost/nhost-js": "^2.2.13",
+        "@urql/core": "^4.0.10",
+        "graphql": "^16.7.1"
+    }
+}
