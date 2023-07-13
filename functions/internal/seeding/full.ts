@@ -3,11 +3,15 @@ import { deleteAllToolCategories, seedToolCategories } from "../../app/seeding/t
 import { isInternalRequest } from "../../app/middlewares/isInternalRequest";
 import { deleteAllTools, seedTools } from "../../app/seeding/tool";
 import { deleteAllCategories, seedCategories } from "../../app/seeding/category";
+import { deleteAllToolLanguages, seedToolLanguages } from "../../app/seeding/tool_language";
+import { deleteAllLanguages, seedLanguages } from "../../app/seeding/language";
 
 const seederConfig = {
     tools: 1000,
     categories: 60,
     toolCategories: 1500,
+    languages: 30,
+    toolLanguages: 1200,
 };
 
 export default async (req: Request, res: Response) => {
@@ -22,27 +26,35 @@ export default async (req: Request, res: Response) => {
         if (fresh) {
             await Promise.all([
                 deleteAllToolCategories(),
+                deleteAllToolLanguages(),
                 deleteAllCategories(),
                 deleteAllTools(),
+                deleteAllLanguages(),
             ]);
         }
         console.log("start seeding...");
 
-        console.log("seeding categories...");
         const { categoryData, categoryError } = await seedCategories(seederConfig.categories);
-        console.log(categoryData, categoryError);
-        console.log("seeding categories finished")
         errorOccurred = errorOccurred || !!categoryError;
+        console.log("category seeding finished");
 
-        console.log("seeding tools...");
         const { toolData, toolError } = await seedTools(seederConfig.tools);
-        console.log("seeding tools finished");
         errorOccurred = errorOccurred || !!toolError;
+        console.log("tool seeding finished");
 
-        console.log("seeding tool categories...");
+        const { languageData, languageError } = await seedLanguages(seederConfig.languages);
+        errorOccurred = errorOccurred || !!languageError;
+        console.log("language seeding finished");
+
         const { toolCategoryData, toolCategoryError } = await seedToolCategories(seederConfig.toolCategories);
-        console.log("seeding tool categories finished");
+        console.log(JSON.stringify(toolCategoryError, null, 2));
         errorOccurred = errorOccurred || !!toolCategoryError;
+        console.log("tool category seeding finished");
+
+        const { toolLanguageData, toolLanguageError } = await seedToolLanguages(seederConfig.toolLanguages);
+        console.log(JSON.stringify(toolLanguageError, null, 2));
+        errorOccurred = errorOccurred || !!toolLanguageError;
+        console.log("tool language seeding finished");
 
         if (errorOccurred) {
             console.error("An error occured when running the full seeder.");

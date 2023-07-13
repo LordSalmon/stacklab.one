@@ -7,15 +7,19 @@ import { faker } from "@faker-js/faker";
 
 type ReturnType = Mutation_RootInsert_Tool_Categories_OneArgs["object"];
 
-const toolIds = [];
-const categoryIds = [];
+let toolIds = [];
+let categoryIds = [];
 
 async function fetchData() {
     if (toolIds.length > 0 && categoryIds.length > 0) {
         return true;
     }
-    toolIds.push(...(await useUrqlClient().query<Query_Root>(GET_ALL_TOOL_IDS, {})).data.tools.map((t) => t.id));
-    categoryIds.push(...(await useUrqlClient().query<Query_Root>(GET_ALL_CATEGORY_IDS, {})).data.categories.map((c) => c.id));
+    toolIds.push(...(await useUrqlClient().query<Query_Root>(GET_ALL_TOOL_IDS, {}, {
+        requestPolicy: "network-only"
+    })).data.tools.map((t) => t.id));
+    categoryIds.push(...(await useUrqlClient().query<Query_Root>(GET_ALL_CATEGORY_IDS, {}, {
+        requestPolicy: "network-only"
+    })).data.categories.map((c) => c.id));
     return toolIds.length > 0 && categoryIds.length > 0;
 }
 
@@ -46,6 +50,9 @@ export async function seedToolCategories(count: number) {
     const { data, error } = await useUrqlClient().mutation(INSERT_TOOL_CATEGORIES, {
         objects
     });
+    // clear fetched data;
+    toolIds = [];
+    categoryIds = [];
     return {
         toolCategoryData: data,
         toolCategoryError: error

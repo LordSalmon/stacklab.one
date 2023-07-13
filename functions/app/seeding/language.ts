@@ -52,12 +52,15 @@ export function fakeLanguage(merge?: Partial<ReturnType>): ReturnType {
 } 
 
 export async function seedLanguages(count: number) {
-    const result = await useUrqlClient().mutation(INSERT_LANGUAGES, {
+    const { data, error } = await useUrqlClient().mutation(INSERT_LANGUAGES, {
         objects: Array.from({ length: count }).map(() => {
             return fakeLanguage();
         })
     });
-    return result;
+    return {
+        languageData: data,
+        languageError: error
+    }
 }
 
 export async function deleteAllLanguages() {
