@@ -146,5 +146,21 @@ services:
     image: nhost/dashboard:0.7.4
     ports:
       - "3030:3000"
+  meilisearch:
+    container_name: meilisearch
+    image: getmeili/meilisearch:v1.2.0
+    environment:
+      - http_proxy
+      - https_proxy
+      - MEILI_MASTER_KEY=${MEILI_MASTER_KEY:-masterKey}
+      - MEILI_NO_ANALYTICS=${MEILI_NO_ANALYTICS:-true}
+      - MEILI_ENV=${MEILI_ENV:-development}
+      - MEILI_LOG_LEVEL
+      - MEILI_DB_PATH=${MEILI_DB_PATH:-/data.ms}
+    ports:
+      - ${MEILI_PORT:-7700}:7700
+    volumes:
+      - ./data/meilisearch/data.ms:/data.ms
+    restart: unless-stopped
 volumes:
   functions_node_modules:
