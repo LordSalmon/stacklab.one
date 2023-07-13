@@ -1,0 +1,11 @@
+table:
+  name: languages
+  schema: public
+array_relationships:
+  - name: tool_languages
+    using:
+      foreign_key_constraint_on:
+        column: language_id
+        table:
+          name: tool_languages
+          schema: public

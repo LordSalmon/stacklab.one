@@ -1,3 +1,18 @@
 table:
   name: tools
   schema: public
+array_relationships:
+  - name: tool_categories
+    using:
+      foreign_key_constraint_on:
+        column: tool_id
+        table:
+          name: tool_categories
+          schema: public
+  - name: tool_languages
+    using:
+      foreign_key_constraint_on:
+        column: tool_id
+        table:
+          name: tool_languages
+          schema: public
