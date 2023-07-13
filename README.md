@@ -32,3 +32,10 @@ hasura console
 ```
 
 The Nhost Dashboard also requires the Hasura admin secret to `nhost-admin-secret`. This will change in the future. If you can't wait, don't hesitate to contribute.
+
+
+## Migrations:
+
+```sh
+hasura migrate ceate "name" --from-server
+```

@@ -248,6 +248,7 @@ export type AuthProviderRequests_Updates = {
   _prepend?: InputMaybe<AuthProviderRequests_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<AuthProviderRequests_Set_Input>;
+  /** filter the rows which have to be updated */
   where: AuthProviderRequests_Bool_Exp;
 };
 
@@ -404,6 +405,7 @@ export enum AuthProviders_Update_Column {
 export type AuthProviders_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<AuthProviders_Set_Input>;
+  /** filter the rows which have to be updated */
   where: AuthProviders_Bool_Exp;
 };
 
@@ -607,6 +609,7 @@ export enum AuthRefreshTokens_Update_Column {
 export type AuthRefreshTokens_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<AuthRefreshTokens_Set_Input>;
+  /** filter the rows which have to be updated */
   where: AuthRefreshTokens_Bool_Exp;
 };
 
@@ -791,6 +794,7 @@ export enum AuthRoles_Update_Column {
 export type AuthRoles_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<AuthRoles_Set_Input>;
+  /** filter the rows which have to be updated */
   where: AuthRoles_Bool_Exp;
 };
 
@@ -879,9 +883,9 @@ export type AuthUserProviders_Bool_Exp = {
 export enum AuthUserProviders_Constraint {
   /** unique or primary key constraint on columns "id" */
   UserProvidersPkey = 'user_providers_pkey',
-  /** unique or primary key constraint on columns "provider_id", "provider_user_id" */
+  /** unique or primary key constraint on columns "provider_user_id", "provider_id" */
   UserProvidersProviderIdProviderUserIdKey = 'user_providers_provider_id_provider_user_id_key',
-  /** unique or primary key constraint on columns "provider_id", "user_id" */
+  /** unique or primary key constraint on columns "user_id", "provider_id" */
   UserProvidersUserIdProviderIdKey = 'user_providers_user_id_provider_id_key'
 }
 
@@ -1059,6 +1063,7 @@ export enum AuthUserProviders_Update_Column {
 export type AuthUserProviders_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<AuthUserProviders_Set_Input>;
+  /** filter the rows which have to be updated */
   where: AuthUserProviders_Bool_Exp;
 };
 
@@ -1269,6 +1274,7 @@ export enum AuthUserRoles_Update_Column {
 export type AuthUserRoles_Updates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<AuthUserRoles_Set_Input>;
+  /** filter the rows which have to be updated */
   where: AuthUserRoles_Bool_Exp;
 };
 
@@ -1590,6 +1596,7 @@ export type AuthUserSecurityKeys_Updates = {
   _inc?: InputMaybe<AuthUserSecurityKeys_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<AuthUserSecurityKeys_Set_Input>;
+  /** filter the rows which have to be updated */
   where: AuthUserSecurityKeys_Bool_Exp;
 };
 
@@ -1931,6 +1938,7 @@ export type Buckets_Updates = {
   _inc?: InputMaybe<Buckets_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Buckets_Set_Input>;
+  /** filter the rows which have to be updated */
   where: Buckets_Bool_Exp;
 };
 
@@ -1969,6 +1977,176 @@ export type Bytea_Comparison_Exp = {
   _lte?: InputMaybe<Scalars['bytea']['input']>;
   _neq?: InputMaybe<Scalars['bytea']['input']>;
   _nin?: InputMaybe<Array<Scalars['bytea']['input']>>;
+};
+
+/** columns and relationships of "categories" */
+export type Categories = {
+  __typename?: 'categories';
+  created_at: Scalars['timestamptz']['output'];
+  id: Scalars['uuid']['output'];
+  slug: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  updated_at: Scalars['timestamptz']['output'];
+};
+
+/** aggregated selection of "categories" */
+export type Categories_Aggregate = {
+  __typename?: 'categories_aggregate';
+  aggregate?: Maybe<Categories_Aggregate_Fields>;
+  nodes: Array<Categories>;
+};
+
+/** aggregate fields of "categories" */
+export type Categories_Aggregate_Fields = {
+  __typename?: 'categories_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Categories_Max_Fields>;
+  min?: Maybe<Categories_Min_Fields>;
+};
+
+
+/** aggregate fields of "categories" */
+export type Categories_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Categories_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "categories". All fields are combined with a logical 'AND'. */
+export type Categories_Bool_Exp = {
+  _and?: InputMaybe<Array<Categories_Bool_Exp>>;
+  _not?: InputMaybe<Categories_Bool_Exp>;
+  _or?: InputMaybe<Array<Categories_Bool_Exp>>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
+  title?: InputMaybe<String_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "categories" */
+export enum Categories_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  CategoriesPkey = 'categories_pkey'
+}
+
+/** input type for inserting data into table "categories" */
+export type Categories_Insert_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate max on columns */
+export type Categories_Max_Fields = {
+  __typename?: 'categories_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** aggregate min on columns */
+export type Categories_Min_Fields = {
+  __typename?: 'categories_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** response of any mutation on the table "categories" */
+export type Categories_Mutation_Response = {
+  __typename?: 'categories_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Categories>;
+};
+
+/** on_conflict condition type for table "categories" */
+export type Categories_On_Conflict = {
+  constraint: Categories_Constraint;
+  update_columns?: Array<Categories_Update_Column>;
+  where?: InputMaybe<Categories_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "categories". */
+export type Categories_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: categories */
+export type Categories_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "categories" */
+export enum Categories_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  Title = 'title',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "categories" */
+export type Categories_Set_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** Streaming cursor of the table "categories" */
+export type Categories_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Categories_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Categories_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** update columns of table "categories" */
+export enum Categories_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  Title = 'title',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type Categories_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Categories_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Categories_Bool_Exp;
 };
 
 /** Boolean expression to compare columns of type "citext". All fields are combined with logical 'AND'. */
@@ -2398,6 +2576,7 @@ export type Files_Updates = {
   _inc?: InputMaybe<Files_Inc_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Files_Set_Input>;
+  /** filter the rows which have to be updated */
   where: Files_Bool_Exp;
 };
 
@@ -2462,6 +2641,176 @@ export type Jsonb_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['jsonb']['input']>>;
 };
 
+/** columns and relationships of "languages" */
+export type Languages = {
+  __typename?: 'languages';
+  created_at: Scalars['timestamptz']['output'];
+  id: Scalars['uuid']['output'];
+  name: Scalars['String']['output'];
+  name_short: Scalars['String']['output'];
+  updated_at: Scalars['timestamptz']['output'];
+};
+
+/** aggregated selection of "languages" */
+export type Languages_Aggregate = {
+  __typename?: 'languages_aggregate';
+  aggregate?: Maybe<Languages_Aggregate_Fields>;
+  nodes: Array<Languages>;
+};
+
+/** aggregate fields of "languages" */
+export type Languages_Aggregate_Fields = {
+  __typename?: 'languages_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Languages_Max_Fields>;
+  min?: Maybe<Languages_Min_Fields>;
+};
+
+
+/** aggregate fields of "languages" */
+export type Languages_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Languages_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "languages". All fields are combined with a logical 'AND'. */
+export type Languages_Bool_Exp = {
+  _and?: InputMaybe<Array<Languages_Bool_Exp>>;
+  _not?: InputMaybe<Languages_Bool_Exp>;
+  _or?: InputMaybe<Array<Languages_Bool_Exp>>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  name?: InputMaybe<String_Comparison_Exp>;
+  name_short?: InputMaybe<String_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "languages" */
+export enum Languages_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  LanguagesPkey = 'languages_pkey'
+}
+
+/** input type for inserting data into table "languages" */
+export type Languages_Insert_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  name_short?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate max on columns */
+export type Languages_Max_Fields = {
+  __typename?: 'languages_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  name_short?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** aggregate min on columns */
+export type Languages_Min_Fields = {
+  __typename?: 'languages_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  name_short?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** response of any mutation on the table "languages" */
+export type Languages_Mutation_Response = {
+  __typename?: 'languages_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Languages>;
+};
+
+/** on_conflict condition type for table "languages" */
+export type Languages_On_Conflict = {
+  constraint: Languages_Constraint;
+  update_columns?: Array<Languages_Update_Column>;
+  where?: InputMaybe<Languages_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "languages". */
+export type Languages_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  name_short?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: languages */
+export type Languages_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "languages" */
+export enum Languages_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  NameShort = 'name_short',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "languages" */
+export type Languages_Set_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  name_short?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** Streaming cursor of the table "languages" */
+export type Languages_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Languages_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Languages_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  name_short?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** update columns of table "languages" */
+export enum Languages_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  NameShort = 'name_short',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type Languages_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Languages_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Languages_Bool_Exp;
+};
+
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
@@ -2505,6 +2854,22 @@ export type Mutation_Root = {
   deleteUser?: Maybe<Users>;
   /** delete data from the table: "auth.users" */
   deleteUsers?: Maybe<Users_Mutation_Response>;
+  /** delete data from the table: "categories" */
+  delete_categories?: Maybe<Categories_Mutation_Response>;
+  /** delete single row from the table: "categories" */
+  delete_categories_by_pk?: Maybe<Categories>;
+  /** delete data from the table: "languages" */
+  delete_languages?: Maybe<Languages_Mutation_Response>;
+  /** delete single row from the table: "languages" */
+  delete_languages_by_pk?: Maybe<Languages>;
+  /** delete data from the table: "tool_categories" */
+  delete_tool_categories?: Maybe<Tool_Categories_Mutation_Response>;
+  /** delete single row from the table: "tool_categories" */
+  delete_tool_categories_by_pk?: Maybe<Tool_Categories>;
+  /** delete data from the table: "tool_languages" */
+  delete_tool_languages?: Maybe<Tool_Languages_Mutation_Response>;
+  /** delete single row from the table: "tool_languages" */
+  delete_tool_languages_by_pk?: Maybe<Tool_Languages>;
   /** delete data from the table: "tools" */
   delete_tools?: Maybe<Tools_Mutation_Response>;
   /** delete single row from the table: "tools" */
@@ -2549,6 +2914,22 @@ export type Mutation_Root = {
   insertUser?: Maybe<Users>;
   /** insert data into the table: "auth.users" */
   insertUsers?: Maybe<Users_Mutation_Response>;
+  /** insert data into the table: "categories" */
+  insert_categories?: Maybe<Categories_Mutation_Response>;
+  /** insert a single row into the table: "categories" */
+  insert_categories_one?: Maybe<Categories>;
+  /** insert data into the table: "languages" */
+  insert_languages?: Maybe<Languages_Mutation_Response>;
+  /** insert a single row into the table: "languages" */
+  insert_languages_one?: Maybe<Languages>;
+  /** insert data into the table: "tool_categories" */
+  insert_tool_categories?: Maybe<Tool_Categories_Mutation_Response>;
+  /** insert a single row into the table: "tool_categories" */
+  insert_tool_categories_one?: Maybe<Tool_Categories>;
+  /** insert data into the table: "tool_languages" */
+  insert_tool_languages?: Maybe<Tool_Languages_Mutation_Response>;
+  /** insert a single row into the table: "tool_languages" */
+  insert_tool_languages_one?: Maybe<Tool_Languages>;
   /** insert data into the table: "tools" */
   insert_tools?: Maybe<Tools_Mutation_Response>;
   /** insert a single row into the table: "tools" */
@@ -2609,8 +2990,32 @@ export type Mutation_Root = {
   update_authUserSecurityKeys_many?: Maybe<Array<Maybe<AuthUserSecurityKeys_Mutation_Response>>>;
   /** update multiples rows of table: "storage.buckets" */
   update_buckets_many?: Maybe<Array<Maybe<Buckets_Mutation_Response>>>;
+  /** update data of the table: "categories" */
+  update_categories?: Maybe<Categories_Mutation_Response>;
+  /** update single row of the table: "categories" */
+  update_categories_by_pk?: Maybe<Categories>;
+  /** update multiples rows of table: "categories" */
+  update_categories_many?: Maybe<Array<Maybe<Categories_Mutation_Response>>>;
   /** update multiples rows of table: "storage.files" */
   update_files_many?: Maybe<Array<Maybe<Files_Mutation_Response>>>;
+  /** update data of the table: "languages" */
+  update_languages?: Maybe<Languages_Mutation_Response>;
+  /** update single row of the table: "languages" */
+  update_languages_by_pk?: Maybe<Languages>;
+  /** update multiples rows of table: "languages" */
+  update_languages_many?: Maybe<Array<Maybe<Languages_Mutation_Response>>>;
+  /** update data of the table: "tool_categories" */
+  update_tool_categories?: Maybe<Tool_Categories_Mutation_Response>;
+  /** update single row of the table: "tool_categories" */
+  update_tool_categories_by_pk?: Maybe<Tool_Categories>;
+  /** update multiples rows of table: "tool_categories" */
+  update_tool_categories_many?: Maybe<Array<Maybe<Tool_Categories_Mutation_Response>>>;
+  /** update data of the table: "tool_languages" */
+  update_tool_languages?: Maybe<Tool_Languages_Mutation_Response>;
+  /** update single row of the table: "tool_languages" */
+  update_tool_languages_by_pk?: Maybe<Tool_Languages>;
+  /** update multiples rows of table: "tool_languages" */
+  update_tool_languages_many?: Maybe<Array<Maybe<Tool_Languages_Mutation_Response>>>;
   /** update data of the table: "tools" */
   update_tools?: Maybe<Tools_Mutation_Response>;
   /** update single row of the table: "tools" */
@@ -2739,6 +3144,54 @@ export type Mutation_RootDeleteUserArgs = {
 /** mutation root */
 export type Mutation_RootDeleteUsersArgs = {
   where: Users_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_CategoriesArgs = {
+  where: Categories_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Categories_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_LanguagesArgs = {
+  where: Languages_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Languages_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Tool_CategoriesArgs = {
+  where: Tool_Categories_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Tool_Categories_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Tool_LanguagesArgs = {
+  where: Tool_Languages_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Tool_Languages_By_PkArgs = {
+  id: Scalars['uuid']['input'];
 };
 
 
@@ -2891,6 +3344,62 @@ export type Mutation_RootInsertUserArgs = {
 export type Mutation_RootInsertUsersArgs = {
   objects: Array<Users_Insert_Input>;
   on_conflict?: InputMaybe<Users_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_CategoriesArgs = {
+  objects: Array<Categories_Insert_Input>;
+  on_conflict?: InputMaybe<Categories_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Categories_OneArgs = {
+  object: Categories_Insert_Input;
+  on_conflict?: InputMaybe<Categories_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_LanguagesArgs = {
+  objects: Array<Languages_Insert_Input>;
+  on_conflict?: InputMaybe<Languages_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Languages_OneArgs = {
+  object: Languages_Insert_Input;
+  on_conflict?: InputMaybe<Languages_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Tool_CategoriesArgs = {
+  objects: Array<Tool_Categories_Insert_Input>;
+  on_conflict?: InputMaybe<Tool_Categories_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Tool_Categories_OneArgs = {
+  object: Tool_Categories_Insert_Input;
+  on_conflict?: InputMaybe<Tool_Categories_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Tool_LanguagesArgs = {
+  objects: Array<Tool_Languages_Insert_Input>;
+  on_conflict?: InputMaybe<Tool_Languages_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Tool_Languages_OneArgs = {
+  object: Tool_Languages_Insert_Input;
+  on_conflict?: InputMaybe<Tool_Languages_On_Conflict>;
 };
 
 
@@ -3123,8 +3632,88 @@ export type Mutation_RootUpdate_Buckets_ManyArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_CategoriesArgs = {
+  _set?: InputMaybe<Categories_Set_Input>;
+  where: Categories_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Categories_By_PkArgs = {
+  _set?: InputMaybe<Categories_Set_Input>;
+  pk_columns: Categories_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Categories_ManyArgs = {
+  updates: Array<Categories_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Files_ManyArgs = {
   updates: Array<Files_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_LanguagesArgs = {
+  _set?: InputMaybe<Languages_Set_Input>;
+  where: Languages_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Languages_By_PkArgs = {
+  _set?: InputMaybe<Languages_Set_Input>;
+  pk_columns: Languages_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Languages_ManyArgs = {
+  updates: Array<Languages_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Tool_CategoriesArgs = {
+  _set?: InputMaybe<Tool_Categories_Set_Input>;
+  where: Tool_Categories_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Tool_Categories_By_PkArgs = {
+  _set?: InputMaybe<Tool_Categories_Set_Input>;
+  pk_columns: Tool_Categories_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Tool_Categories_ManyArgs = {
+  updates: Array<Tool_Categories_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Tool_LanguagesArgs = {
+  _set?: InputMaybe<Tool_Languages_Set_Input>;
+  where: Tool_Languages_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Tool_Languages_By_PkArgs = {
+  _set?: InputMaybe<Tool_Languages_Set_Input>;
+  pk_columns: Tool_Languages_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Tool_Languages_ManyArgs = {
+  updates: Array<Tool_Languages_Updates>;
 };
 
 
@@ -3231,12 +3820,36 @@ export type Query_Root = {
   buckets: Array<Buckets>;
   /** fetch aggregated fields from the table: "storage.buckets" */
   bucketsAggregate: Buckets_Aggregate;
+  /** fetch data from the table: "categories" */
+  categories: Array<Categories>;
+  /** fetch aggregated fields from the table: "categories" */
+  categories_aggregate: Categories_Aggregate;
+  /** fetch data from the table: "categories" using primary key columns */
+  categories_by_pk?: Maybe<Categories>;
   /** fetch data from the table: "storage.files" using primary key columns */
   file?: Maybe<Files>;
   /** An array relationship */
   files: Array<Files>;
   /** fetch aggregated fields from the table: "storage.files" */
   filesAggregate: Files_Aggregate;
+  /** fetch data from the table: "languages" */
+  languages: Array<Languages>;
+  /** fetch aggregated fields from the table: "languages" */
+  languages_aggregate: Languages_Aggregate;
+  /** fetch data from the table: "languages" using primary key columns */
+  languages_by_pk?: Maybe<Languages>;
+  /** fetch data from the table: "tool_categories" */
+  tool_categories: Array<Tool_Categories>;
+  /** fetch aggregated fields from the table: "tool_categories" */
+  tool_categories_aggregate: Tool_Categories_Aggregate;
+  /** fetch data from the table: "tool_categories" using primary key columns */
+  tool_categories_by_pk?: Maybe<Tool_Categories>;
+  /** fetch data from the table: "tool_languages" */
+  tool_languages: Array<Tool_Languages>;
+  /** fetch aggregated fields from the table: "tool_languages" */
+  tool_languages_aggregate: Tool_Languages_Aggregate;
+  /** fetch data from the table: "tool_languages" using primary key columns */
+  tool_languages_by_pk?: Maybe<Tool_Languages>;
   /** fetch data from the table: "tools" */
   tools: Array<Tools>;
   /** fetch aggregated fields from the table: "tools" */
@@ -3436,6 +4049,29 @@ export type Query_RootBucketsAggregateArgs = {
 };
 
 
+export type Query_RootCategoriesArgs = {
+  distinct_on?: InputMaybe<Array<Categories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Categories_Order_By>>;
+  where?: InputMaybe<Categories_Bool_Exp>;
+};
+
+
+export type Query_RootCategories_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Categories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Categories_Order_By>>;
+  where?: InputMaybe<Categories_Bool_Exp>;
+};
+
+
+export type Query_RootCategories_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
 export type Query_RootFileArgs = {
   id: Scalars['uuid']['input'];
 };
@@ -3456,6 +4092,75 @@ export type Query_RootFilesAggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Files_Order_By>>;
   where?: InputMaybe<Files_Bool_Exp>;
+};
+
+
+export type Query_RootLanguagesArgs = {
+  distinct_on?: InputMaybe<Array<Languages_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Languages_Order_By>>;
+  where?: InputMaybe<Languages_Bool_Exp>;
+};
+
+
+export type Query_RootLanguages_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Languages_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Languages_Order_By>>;
+  where?: InputMaybe<Languages_Bool_Exp>;
+};
+
+
+export type Query_RootLanguages_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Query_RootTool_CategoriesArgs = {
+  distinct_on?: InputMaybe<Array<Tool_Categories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Tool_Categories_Order_By>>;
+  where?: InputMaybe<Tool_Categories_Bool_Exp>;
+};
+
+
+export type Query_RootTool_Categories_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Tool_Categories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Tool_Categories_Order_By>>;
+  where?: InputMaybe<Tool_Categories_Bool_Exp>;
+};
+
+
+export type Query_RootTool_Categories_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Query_RootTool_LanguagesArgs = {
+  distinct_on?: InputMaybe<Array<Tool_Languages_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Tool_Languages_Order_By>>;
+  where?: InputMaybe<Tool_Languages_Bool_Exp>;
+};
+
+
+export type Query_RootTool_Languages_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Tool_Languages_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Tool_Languages_Order_By>>;
+  where?: InputMaybe<Tool_Languages_Bool_Exp>;
+};
+
+
+export type Query_RootTool_Languages_By_PkArgs = {
+  id: Scalars['uuid']['input'];
 };
 
 
@@ -3570,6 +4275,14 @@ export type Subscription_Root = {
   bucketsAggregate: Buckets_Aggregate;
   /** fetch data from the table in a streaming manner: "storage.buckets" */
   buckets_stream: Array<Buckets>;
+  /** fetch data from the table: "categories" */
+  categories: Array<Categories>;
+  /** fetch aggregated fields from the table: "categories" */
+  categories_aggregate: Categories_Aggregate;
+  /** fetch data from the table: "categories" using primary key columns */
+  categories_by_pk?: Maybe<Categories>;
+  /** fetch data from the table in a streaming manner: "categories" */
+  categories_stream: Array<Categories>;
   /** fetch data from the table: "storage.files" using primary key columns */
   file?: Maybe<Files>;
   /** An array relationship */
@@ -3578,6 +4291,30 @@ export type Subscription_Root = {
   filesAggregate: Files_Aggregate;
   /** fetch data from the table in a streaming manner: "storage.files" */
   files_stream: Array<Files>;
+  /** fetch data from the table: "languages" */
+  languages: Array<Languages>;
+  /** fetch aggregated fields from the table: "languages" */
+  languages_aggregate: Languages_Aggregate;
+  /** fetch data from the table: "languages" using primary key columns */
+  languages_by_pk?: Maybe<Languages>;
+  /** fetch data from the table in a streaming manner: "languages" */
+  languages_stream: Array<Languages>;
+  /** fetch data from the table: "tool_categories" */
+  tool_categories: Array<Tool_Categories>;
+  /** fetch aggregated fields from the table: "tool_categories" */
+  tool_categories_aggregate: Tool_Categories_Aggregate;
+  /** fetch data from the table: "tool_categories" using primary key columns */
+  tool_categories_by_pk?: Maybe<Tool_Categories>;
+  /** fetch data from the table in a streaming manner: "tool_categories" */
+  tool_categories_stream: Array<Tool_Categories>;
+  /** fetch data from the table: "tool_languages" */
+  tool_languages: Array<Tool_Languages>;
+  /** fetch aggregated fields from the table: "tool_languages" */
+  tool_languages_aggregate: Tool_Languages_Aggregate;
+  /** fetch data from the table: "tool_languages" using primary key columns */
+  tool_languages_by_pk?: Maybe<Tool_Languages>;
+  /** fetch data from the table in a streaming manner: "tool_languages" */
+  tool_languages_stream: Array<Tool_Languages>;
   /** fetch data from the table: "tools" */
   tools: Array<Tools>;
   /** fetch aggregated fields from the table: "tools" */
@@ -3837,6 +4574,36 @@ export type Subscription_RootBuckets_StreamArgs = {
 };
 
 
+export type Subscription_RootCategoriesArgs = {
+  distinct_on?: InputMaybe<Array<Categories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Categories_Order_By>>;
+  where?: InputMaybe<Categories_Bool_Exp>;
+};
+
+
+export type Subscription_RootCategories_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Categories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Categories_Order_By>>;
+  where?: InputMaybe<Categories_Bool_Exp>;
+};
+
+
+export type Subscription_RootCategories_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootCategories_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Categories_Stream_Cursor_Input>>;
+  where?: InputMaybe<Categories_Bool_Exp>;
+};
+
+
 export type Subscription_RootFileArgs = {
   id: Scalars['uuid']['input'];
 };
@@ -3864,6 +4631,96 @@ export type Subscription_RootFiles_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Files_Stream_Cursor_Input>>;
   where?: InputMaybe<Files_Bool_Exp>;
+};
+
+
+export type Subscription_RootLanguagesArgs = {
+  distinct_on?: InputMaybe<Array<Languages_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Languages_Order_By>>;
+  where?: InputMaybe<Languages_Bool_Exp>;
+};
+
+
+export type Subscription_RootLanguages_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Languages_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Languages_Order_By>>;
+  where?: InputMaybe<Languages_Bool_Exp>;
+};
+
+
+export type Subscription_RootLanguages_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootLanguages_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Languages_Stream_Cursor_Input>>;
+  where?: InputMaybe<Languages_Bool_Exp>;
+};
+
+
+export type Subscription_RootTool_CategoriesArgs = {
+  distinct_on?: InputMaybe<Array<Tool_Categories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Tool_Categories_Order_By>>;
+  where?: InputMaybe<Tool_Categories_Bool_Exp>;
+};
+
+
+export type Subscription_RootTool_Categories_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Tool_Categories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Tool_Categories_Order_By>>;
+  where?: InputMaybe<Tool_Categories_Bool_Exp>;
+};
+
+
+export type Subscription_RootTool_Categories_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootTool_Categories_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Tool_Categories_Stream_Cursor_Input>>;
+  where?: InputMaybe<Tool_Categories_Bool_Exp>;
+};
+
+
+export type Subscription_RootTool_LanguagesArgs = {
+  distinct_on?: InputMaybe<Array<Tool_Languages_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Tool_Languages_Order_By>>;
+  where?: InputMaybe<Tool_Languages_Bool_Exp>;
+};
+
+
+export type Subscription_RootTool_Languages_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Tool_Languages_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Tool_Languages_Order_By>>;
+  where?: InputMaybe<Tool_Languages_Bool_Exp>;
+};
+
+
+export type Subscription_RootTool_Languages_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootTool_Languages_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Tool_Languages_Stream_Cursor_Input>>;
+  where?: InputMaybe<Tool_Languages_Bool_Exp>;
 };
 
 
@@ -3939,25 +4796,316 @@ export type Timestamptz_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['timestamptz']['input']>>;
 };
 
+/** columns and relationships of "tool_categories" */
+export type Tool_Categories = {
+  __typename?: 'tool_categories';
+  category_id: Scalars['uuid']['output'];
+  id: Scalars['uuid']['output'];
+  tool_id: Scalars['uuid']['output'];
+};
+
+/** aggregated selection of "tool_categories" */
+export type Tool_Categories_Aggregate = {
+  __typename?: 'tool_categories_aggregate';
+  aggregate?: Maybe<Tool_Categories_Aggregate_Fields>;
+  nodes: Array<Tool_Categories>;
+};
+
+/** aggregate fields of "tool_categories" */
+export type Tool_Categories_Aggregate_Fields = {
+  __typename?: 'tool_categories_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Tool_Categories_Max_Fields>;
+  min?: Maybe<Tool_Categories_Min_Fields>;
+};
+
+
+/** aggregate fields of "tool_categories" */
+export type Tool_Categories_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Tool_Categories_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "tool_categories". All fields are combined with a logical 'AND'. */
+export type Tool_Categories_Bool_Exp = {
+  _and?: InputMaybe<Array<Tool_Categories_Bool_Exp>>;
+  _not?: InputMaybe<Tool_Categories_Bool_Exp>;
+  _or?: InputMaybe<Array<Tool_Categories_Bool_Exp>>;
+  category_id?: InputMaybe<Uuid_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  tool_id?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "tool_categories" */
+export enum Tool_Categories_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  ToolCategoriesPkey = 'tool_categories_pkey'
+}
+
+/** input type for inserting data into table "tool_categories" */
+export type Tool_Categories_Insert_Input = {
+  category_id?: InputMaybe<Scalars['uuid']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  tool_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** aggregate max on columns */
+export type Tool_Categories_Max_Fields = {
+  __typename?: 'tool_categories_max_fields';
+  category_id?: Maybe<Scalars['uuid']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  tool_id?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** aggregate min on columns */
+export type Tool_Categories_Min_Fields = {
+  __typename?: 'tool_categories_min_fields';
+  category_id?: Maybe<Scalars['uuid']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  tool_id?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** response of any mutation on the table "tool_categories" */
+export type Tool_Categories_Mutation_Response = {
+  __typename?: 'tool_categories_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Tool_Categories>;
+};
+
+/** on_conflict condition type for table "tool_categories" */
+export type Tool_Categories_On_Conflict = {
+  constraint: Tool_Categories_Constraint;
+  update_columns?: Array<Tool_Categories_Update_Column>;
+  where?: InputMaybe<Tool_Categories_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "tool_categories". */
+export type Tool_Categories_Order_By = {
+  category_id?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  tool_id?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: tool_categories */
+export type Tool_Categories_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "tool_categories" */
+export enum Tool_Categories_Select_Column {
+  /** column name */
+  CategoryId = 'category_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  ToolId = 'tool_id'
+}
+
+/** input type for updating data in table "tool_categories" */
+export type Tool_Categories_Set_Input = {
+  category_id?: InputMaybe<Scalars['uuid']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  tool_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** Streaming cursor of the table "tool_categories" */
+export type Tool_Categories_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Tool_Categories_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Tool_Categories_Stream_Cursor_Value_Input = {
+  category_id?: InputMaybe<Scalars['uuid']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  tool_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** update columns of table "tool_categories" */
+export enum Tool_Categories_Update_Column {
+  /** column name */
+  CategoryId = 'category_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  ToolId = 'tool_id'
+}
+
+export type Tool_Categories_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Tool_Categories_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Tool_Categories_Bool_Exp;
+};
+
+/** columns and relationships of "tool_languages" */
+export type Tool_Languages = {
+  __typename?: 'tool_languages';
+  id: Scalars['uuid']['output'];
+  language_id: Scalars['uuid']['output'];
+  tool_id: Scalars['uuid']['output'];
+};
+
+/** aggregated selection of "tool_languages" */
+export type Tool_Languages_Aggregate = {
+  __typename?: 'tool_languages_aggregate';
+  aggregate?: Maybe<Tool_Languages_Aggregate_Fields>;
+  nodes: Array<Tool_Languages>;
+};
+
+/** aggregate fields of "tool_languages" */
+export type Tool_Languages_Aggregate_Fields = {
+  __typename?: 'tool_languages_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Tool_Languages_Max_Fields>;
+  min?: Maybe<Tool_Languages_Min_Fields>;
+};
+
+
+/** aggregate fields of "tool_languages" */
+export type Tool_Languages_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Tool_Languages_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "tool_languages". All fields are combined with a logical 'AND'. */
+export type Tool_Languages_Bool_Exp = {
+  _and?: InputMaybe<Array<Tool_Languages_Bool_Exp>>;
+  _not?: InputMaybe<Tool_Languages_Bool_Exp>;
+  _or?: InputMaybe<Array<Tool_Languages_Bool_Exp>>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  language_id?: InputMaybe<Uuid_Comparison_Exp>;
+  tool_id?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "tool_languages" */
+export enum Tool_Languages_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  ToolLanguagesPkey = 'tool_languages_pkey'
+}
+
+/** input type for inserting data into table "tool_languages" */
+export type Tool_Languages_Insert_Input = {
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  language_id?: InputMaybe<Scalars['uuid']['input']>;
+  tool_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** aggregate max on columns */
+export type Tool_Languages_Max_Fields = {
+  __typename?: 'tool_languages_max_fields';
+  id?: Maybe<Scalars['uuid']['output']>;
+  language_id?: Maybe<Scalars['uuid']['output']>;
+  tool_id?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** aggregate min on columns */
+export type Tool_Languages_Min_Fields = {
+  __typename?: 'tool_languages_min_fields';
+  id?: Maybe<Scalars['uuid']['output']>;
+  language_id?: Maybe<Scalars['uuid']['output']>;
+  tool_id?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** response of any mutation on the table "tool_languages" */
+export type Tool_Languages_Mutation_Response = {
+  __typename?: 'tool_languages_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Tool_Languages>;
+};
+
+/** on_conflict condition type for table "tool_languages" */
+export type Tool_Languages_On_Conflict = {
+  constraint: Tool_Languages_Constraint;
+  update_columns?: Array<Tool_Languages_Update_Column>;
+  where?: InputMaybe<Tool_Languages_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "tool_languages". */
+export type Tool_Languages_Order_By = {
+  id?: InputMaybe<Order_By>;
+  language_id?: InputMaybe<Order_By>;
+  tool_id?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: tool_languages */
+export type Tool_Languages_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "tool_languages" */
+export enum Tool_Languages_Select_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  LanguageId = 'language_id',
+  /** column name */
+  ToolId = 'tool_id'
+}
+
+/** input type for updating data in table "tool_languages" */
+export type Tool_Languages_Set_Input = {
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  language_id?: InputMaybe<Scalars['uuid']['input']>;
+  tool_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** Streaming cursor of the table "tool_languages" */
+export type Tool_Languages_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Tool_Languages_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Tool_Languages_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  language_id?: InputMaybe<Scalars['uuid']['input']>;
+  tool_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** update columns of table "tool_languages" */
+export enum Tool_Languages_Update_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  LanguageId = 'language_id',
+  /** column name */
+  ToolId = 'tool_id'
+}
+
+export type Tool_Languages_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Tool_Languages_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Tool_Languages_Bool_Exp;
+};
+
 /** columns and relationships of "tools" */
 export type Tools = {
   __typename?: 'tools';
-  author: Scalars['uuid']['output'];
-  background_image: Scalars['uuid']['output'];
+  author?: Maybe<Scalars['uuid']['output']>;
+  background_image?: Maybe<Scalars['uuid']['output']>;
   created_at: Scalars['timestamptz']['output'];
-  description_short: Scalars['String']['output'];
-  hydrated_at: Scalars['timestamptz']['output'];
-  icon: Scalars['uuid']['output'];
+  description_short?: Maybe<Scalars['String']['output']>;
+  hydrated_at?: Maybe<Scalars['timestamptz']['output']>;
+  icon?: Maybe<Scalars['uuid']['output']>;
   id: Scalars['uuid']['output'];
-  is_free: Scalars['Boolean']['output'];
-  is_maintained: Scalars['Boolean']['output'];
-  language: Scalars['uuid']['output'];
-  repository_url: Scalars['String']['output'];
-  stars: Scalars['Int']['output'];
+  is_free?: Maybe<Scalars['Boolean']['output']>;
+  is_maintained?: Maybe<Scalars['Boolean']['output']>;
+  repository_url?: Maybe<Scalars['String']['output']>;
+  stars?: Maybe<Scalars['Int']['output']>;
   tags: Scalars['jsonb']['output'];
   title: Scalars['String']['output'];
   updated_at: Scalars['timestamptz']['output'];
-  website_url: Scalars['String']['output'];
+  website_url?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -4021,7 +5169,6 @@ export type Tools_Bool_Exp = {
   id?: InputMaybe<Uuid_Comparison_Exp>;
   is_free?: InputMaybe<Boolean_Comparison_Exp>;
   is_maintained?: InputMaybe<Boolean_Comparison_Exp>;
-  language?: InputMaybe<Uuid_Comparison_Exp>;
   repository_url?: InputMaybe<String_Comparison_Exp>;
   stars?: InputMaybe<Int_Comparison_Exp>;
   tags?: InputMaybe<Jsonb_Comparison_Exp>;
@@ -4067,7 +5214,6 @@ export type Tools_Insert_Input = {
   id?: InputMaybe<Scalars['uuid']['input']>;
   is_free?: InputMaybe<Scalars['Boolean']['input']>;
   is_maintained?: InputMaybe<Scalars['Boolean']['input']>;
-  language?: InputMaybe<Scalars['uuid']['input']>;
   repository_url?: InputMaybe<Scalars['String']['input']>;
   stars?: InputMaybe<Scalars['Int']['input']>;
   tags?: InputMaybe<Scalars['jsonb']['input']>;
@@ -4086,7 +5232,6 @@ export type Tools_Max_Fields = {
   hydrated_at?: Maybe<Scalars['timestamptz']['output']>;
   icon?: Maybe<Scalars['uuid']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
-  language?: Maybe<Scalars['uuid']['output']>;
   repository_url?: Maybe<Scalars['String']['output']>;
   stars?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
@@ -4104,7 +5249,6 @@ export type Tools_Min_Fields = {
   hydrated_at?: Maybe<Scalars['timestamptz']['output']>;
   icon?: Maybe<Scalars['uuid']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
-  language?: Maybe<Scalars['uuid']['output']>;
   repository_url?: Maybe<Scalars['String']['output']>;
   stars?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
@@ -4139,7 +5283,6 @@ export type Tools_Order_By = {
   id?: InputMaybe<Order_By>;
   is_free?: InputMaybe<Order_By>;
   is_maintained?: InputMaybe<Order_By>;
-  language?: InputMaybe<Order_By>;
   repository_url?: InputMaybe<Order_By>;
   stars?: InputMaybe<Order_By>;
   tags?: InputMaybe<Order_By>;
@@ -4179,8 +5322,6 @@ export enum Tools_Select_Column {
   /** column name */
   IsMaintained = 'is_maintained',
   /** column name */
-  Language = 'language',
-  /** column name */
   RepositoryUrl = 'repository_url',
   /** column name */
   Stars = 'stars',
@@ -4205,7 +5346,6 @@ export type Tools_Set_Input = {
   id?: InputMaybe<Scalars['uuid']['input']>;
   is_free?: InputMaybe<Scalars['Boolean']['input']>;
   is_maintained?: InputMaybe<Scalars['Boolean']['input']>;
-  language?: InputMaybe<Scalars['uuid']['input']>;
   repository_url?: InputMaybe<Scalars['String']['input']>;
   stars?: InputMaybe<Scalars['Int']['input']>;
   tags?: InputMaybe<Scalars['jsonb']['input']>;
@@ -4251,7 +5391,6 @@ export type Tools_Stream_Cursor_Value_Input = {
   id?: InputMaybe<Scalars['uuid']['input']>;
   is_free?: InputMaybe<Scalars['Boolean']['input']>;
   is_maintained?: InputMaybe<Scalars['Boolean']['input']>;
-  language?: InputMaybe<Scalars['uuid']['input']>;
   repository_url?: InputMaybe<Scalars['String']['input']>;
   stars?: InputMaybe<Scalars['Int']['input']>;
   tags?: InputMaybe<Scalars['jsonb']['input']>;
@@ -4287,8 +5426,6 @@ export enum Tools_Update_Column {
   /** column name */
   IsMaintained = 'is_maintained',
   /** column name */
-  Language = 'language',
-  /** column name */
   RepositoryUrl = 'repository_url',
   /** column name */
   Stars = 'stars',
@@ -4317,6 +5454,7 @@ export type Tools_Updates = {
   _prepend?: InputMaybe<Tools_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Tools_Set_Input>;
+  /** filter the rows which have to be updated */
   where: Tools_Bool_Exp;
 };
 
@@ -5016,6 +6154,7 @@ export type Users_Updates = {
   _prepend?: InputMaybe<Users_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Users_Set_Input>;
+  /** filter the rows which have to be updated */
   where: Users_Bool_Exp;
 };
 
