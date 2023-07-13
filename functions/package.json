@@ -57,6 +57,7 @@
         "@nhost/nhost-js": "^2.2.13",
         "@urql/core": "^4.0.10",
         "graphql": "^16.7.1",
-        "open-graph-scraper": "^6.2.1"
+        "meilisearch": "^0.33.0",
+        "open-graph": "^0.2.6"
     }
 }
