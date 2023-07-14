@@ -162,5 +162,21 @@ services:
     volumes:
       - ./data/meilisearch/data.ms:/data.ms
     restart: unless-stopped
+  adonis:
+    container_name: adonis
+    restart: always
+    build:
+      context: ./adonis
+      target: dependencies
+    ports:
+      - ${ADONIS_PORT}:${ADONIS_PORT}
+      - 9229:9229
+    env_file:
+      - .env
+    volumes:
+      - ./adonis:/home/node/app
+      # Uncomment the below line if you developing on MacOS
+      - /home/node/app/node_modules
+    command: dumb-init node ace serve --watch --node-args="--inspect=0.0.0.0"
 volumes:
   functions_node_modules:
