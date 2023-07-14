@@ -32,3 +32,55 @@ export const GET_ALL_TOOL_IDS = gql`
         }
     }
 `;
+
+export const UPDATE_TOOL = gql`
+    mutation updateTool($id: uuid!, $set: tools_set_input!) {
+        update_tools_by_pk(pk_columns: {id: $id}, _set: $set) {
+            id
+        }
+    }
+`;
+
+const hydrationToolFragment = gql`
+    fragment hydrationToolFragment on tools {
+        id
+        title
+        description_short
+        stars
+        is_free
+        is_maintained
+        website_url
+        repository_url
+        tags
+        created_at
+        updated_at
+        hydrated_at
+        og_data
+    }
+`;
+
+export const GET_OUTDATED_TOOLS = gql`
+    query getOutdatedTools($hydrationDate: timestamptz!) {
+        tools(where: {
+            _and: [
+                {
+                    _or: [
+                        {
+                            hydrated_at: {
+                                _lte: $hydrationDate
+                            }
+                        },
+                        {
+                            hydrated_at: {
+                                _is_null: true
+                            }
+                        }
+                    ]
+                }
+            ]
+        }) {
+            ...hydrationToolFragment
+        }
+    }
+    ${hydrationToolFragment}
+`;

@@ -1,16 +1,12 @@
-import opengraphScraper from "open-graph-scraper";
+import opengraph from "open-graph";
 
 export function scrapeOpenGraph(url: string) {
     return new Promise((resolve, reject) => {
-        opengraphScraper({
-            url,
-        }).then(res => {
-            if (res.error) {
-                reject(res.result);
+        opengraph(url, (err, data) => {
+            if (err) {
+                reject(err);
             }
-            resolve(res.result);
-        }).catch(err => {
-            reject(err);
-        })
+            resolve(data);
+        });
     });
 }

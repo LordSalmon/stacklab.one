@@ -1986,7 +1986,31 @@ export type Categories = {
   id: Scalars['uuid']['output'];
   slug: Scalars['String']['output'];
   title: Scalars['String']['output'];
+  /** An array relationship */
+  tool_categories: Array<Tool_Categories>;
+  /** An aggregate relationship */
+  tool_categories_aggregate: Tool_Categories_Aggregate;
   updated_at: Scalars['timestamptz']['output'];
+};
+
+
+/** columns and relationships of "categories" */
+export type CategoriesTool_CategoriesArgs = {
+  distinct_on?: InputMaybe<Array<Tool_Categories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Tool_Categories_Order_By>>;
+  where?: InputMaybe<Tool_Categories_Bool_Exp>;
+};
+
+
+/** columns and relationships of "categories" */
+export type CategoriesTool_Categories_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Tool_Categories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Tool_Categories_Order_By>>;
+  where?: InputMaybe<Tool_Categories_Bool_Exp>;
 };
 
 /** aggregated selection of "categories" */
@@ -2020,6 +2044,8 @@ export type Categories_Bool_Exp = {
   id?: InputMaybe<Uuid_Comparison_Exp>;
   slug?: InputMaybe<String_Comparison_Exp>;
   title?: InputMaybe<String_Comparison_Exp>;
+  tool_categories?: InputMaybe<Tool_Categories_Bool_Exp>;
+  tool_categories_aggregate?: InputMaybe<Tool_Categories_Aggregate_Bool_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
@@ -2035,6 +2061,7 @@ export type Categories_Insert_Input = {
   id?: InputMaybe<Scalars['uuid']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
+  tool_categories?: InputMaybe<Tool_Categories_Arr_Rel_Insert_Input>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
@@ -2067,6 +2094,13 @@ export type Categories_Mutation_Response = {
   returning: Array<Categories>;
 };
 
+/** input type for inserting object relation for remote table "categories" */
+export type Categories_Obj_Rel_Insert_Input = {
+  data: Categories_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Categories_On_Conflict>;
+};
+
 /** on_conflict condition type for table "categories" */
 export type Categories_On_Conflict = {
   constraint: Categories_Constraint;
@@ -2080,6 +2114,7 @@ export type Categories_Order_By = {
   id?: InputMaybe<Order_By>;
   slug?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
+  tool_categories_aggregate?: InputMaybe<Tool_Categories_Aggregate_Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
 
@@ -2648,7 +2683,31 @@ export type Languages = {
   id: Scalars['uuid']['output'];
   name: Scalars['String']['output'];
   name_short: Scalars['String']['output'];
+  /** An array relationship */
+  tool_languages: Array<Tool_Languages>;
+  /** An aggregate relationship */
+  tool_languages_aggregate: Tool_Languages_Aggregate;
   updated_at: Scalars['timestamptz']['output'];
+};
+
+
+/** columns and relationships of "languages" */
+export type LanguagesTool_LanguagesArgs = {
+  distinct_on?: InputMaybe<Array<Tool_Languages_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Tool_Languages_Order_By>>;
+  where?: InputMaybe<Tool_Languages_Bool_Exp>;
+};
+
+
+/** columns and relationships of "languages" */
+export type LanguagesTool_Languages_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Tool_Languages_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Tool_Languages_Order_By>>;
+  where?: InputMaybe<Tool_Languages_Bool_Exp>;
 };
 
 /** aggregated selection of "languages" */
@@ -2682,6 +2741,8 @@ export type Languages_Bool_Exp = {
   id?: InputMaybe<Uuid_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
   name_short?: InputMaybe<String_Comparison_Exp>;
+  tool_languages?: InputMaybe<Tool_Languages_Bool_Exp>;
+  tool_languages_aggregate?: InputMaybe<Tool_Languages_Aggregate_Bool_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
@@ -2697,6 +2758,7 @@ export type Languages_Insert_Input = {
   id?: InputMaybe<Scalars['uuid']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   name_short?: InputMaybe<Scalars['String']['input']>;
+  tool_languages?: InputMaybe<Tool_Languages_Arr_Rel_Insert_Input>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
@@ -2729,6 +2791,13 @@ export type Languages_Mutation_Response = {
   returning: Array<Languages>;
 };
 
+/** input type for inserting object relation for remote table "languages" */
+export type Languages_Obj_Rel_Insert_Input = {
+  data: Languages_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Languages_On_Conflict>;
+};
+
 /** on_conflict condition type for table "languages" */
 export type Languages_On_Conflict = {
   constraint: Languages_Constraint;
@@ -2742,6 +2811,7 @@ export type Languages_Order_By = {
   id?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
   name_short?: InputMaybe<Order_By>;
+  tool_languages_aggregate?: InputMaybe<Tool_Languages_Aggregate_Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
 
@@ -3838,15 +3908,15 @@ export type Query_Root = {
   languages_aggregate: Languages_Aggregate;
   /** fetch data from the table: "languages" using primary key columns */
   languages_by_pk?: Maybe<Languages>;
-  /** fetch data from the table: "tool_categories" */
+  /** An array relationship */
   tool_categories: Array<Tool_Categories>;
-  /** fetch aggregated fields from the table: "tool_categories" */
+  /** An aggregate relationship */
   tool_categories_aggregate: Tool_Categories_Aggregate;
   /** fetch data from the table: "tool_categories" using primary key columns */
   tool_categories_by_pk?: Maybe<Tool_Categories>;
-  /** fetch data from the table: "tool_languages" */
+  /** An array relationship */
   tool_languages: Array<Tool_Languages>;
-  /** fetch aggregated fields from the table: "tool_languages" */
+  /** An aggregate relationship */
   tool_languages_aggregate: Tool_Languages_Aggregate;
   /** fetch data from the table: "tool_languages" using primary key columns */
   tool_languages_by_pk?: Maybe<Tool_Languages>;
@@ -4299,17 +4369,17 @@ export type Subscription_Root = {
   languages_by_pk?: Maybe<Languages>;
   /** fetch data from the table in a streaming manner: "languages" */
   languages_stream: Array<Languages>;
-  /** fetch data from the table: "tool_categories" */
+  /** An array relationship */
   tool_categories: Array<Tool_Categories>;
-  /** fetch aggregated fields from the table: "tool_categories" */
+  /** An aggregate relationship */
   tool_categories_aggregate: Tool_Categories_Aggregate;
   /** fetch data from the table: "tool_categories" using primary key columns */
   tool_categories_by_pk?: Maybe<Tool_Categories>;
   /** fetch data from the table in a streaming manner: "tool_categories" */
   tool_categories_stream: Array<Tool_Categories>;
-  /** fetch data from the table: "tool_languages" */
+  /** An array relationship */
   tool_languages: Array<Tool_Languages>;
-  /** fetch aggregated fields from the table: "tool_languages" */
+  /** An aggregate relationship */
   tool_languages_aggregate: Tool_Languages_Aggregate;
   /** fetch data from the table: "tool_languages" using primary key columns */
   tool_languages_by_pk?: Maybe<Tool_Languages>;
@@ -4799,8 +4869,12 @@ export type Timestamptz_Comparison_Exp = {
 /** columns and relationships of "tool_categories" */
 export type Tool_Categories = {
   __typename?: 'tool_categories';
+  /** An object relationship */
+  category: Categories;
   category_id: Scalars['uuid']['output'];
   id: Scalars['uuid']['output'];
+  /** An object relationship */
+  tool: Tools;
   tool_id: Scalars['uuid']['output'];
 };
 
@@ -4809,6 +4883,17 @@ export type Tool_Categories_Aggregate = {
   __typename?: 'tool_categories_aggregate';
   aggregate?: Maybe<Tool_Categories_Aggregate_Fields>;
   nodes: Array<Tool_Categories>;
+};
+
+export type Tool_Categories_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Tool_Categories_Aggregate_Bool_Exp_Count>;
+};
+
+export type Tool_Categories_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Tool_Categories_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Tool_Categories_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "tool_categories" */
@@ -4826,13 +4911,29 @@ export type Tool_Categories_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+/** order by aggregate values of table "tool_categories" */
+export type Tool_Categories_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Tool_Categories_Max_Order_By>;
+  min?: InputMaybe<Tool_Categories_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "tool_categories" */
+export type Tool_Categories_Arr_Rel_Insert_Input = {
+  data: Array<Tool_Categories_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Tool_Categories_On_Conflict>;
+};
+
 /** Boolean expression to filter rows from the table "tool_categories". All fields are combined with a logical 'AND'. */
 export type Tool_Categories_Bool_Exp = {
   _and?: InputMaybe<Array<Tool_Categories_Bool_Exp>>;
   _not?: InputMaybe<Tool_Categories_Bool_Exp>;
   _or?: InputMaybe<Array<Tool_Categories_Bool_Exp>>;
+  category?: InputMaybe<Categories_Bool_Exp>;
   category_id?: InputMaybe<Uuid_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
+  tool?: InputMaybe<Tools_Bool_Exp>;
   tool_id?: InputMaybe<Uuid_Comparison_Exp>;
 };
 
@@ -4844,8 +4945,10 @@ export enum Tool_Categories_Constraint {
 
 /** input type for inserting data into table "tool_categories" */
 export type Tool_Categories_Insert_Input = {
+  category?: InputMaybe<Categories_Obj_Rel_Insert_Input>;
   category_id?: InputMaybe<Scalars['uuid']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
+  tool?: InputMaybe<Tools_Obj_Rel_Insert_Input>;
   tool_id?: InputMaybe<Scalars['uuid']['input']>;
 };
 
@@ -4857,12 +4960,26 @@ export type Tool_Categories_Max_Fields = {
   tool_id?: Maybe<Scalars['uuid']['output']>;
 };
 
+/** order by max() on columns of table "tool_categories" */
+export type Tool_Categories_Max_Order_By = {
+  category_id?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  tool_id?: InputMaybe<Order_By>;
+};
+
 /** aggregate min on columns */
 export type Tool_Categories_Min_Fields = {
   __typename?: 'tool_categories_min_fields';
   category_id?: Maybe<Scalars['uuid']['output']>;
   id?: Maybe<Scalars['uuid']['output']>;
   tool_id?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** order by min() on columns of table "tool_categories" */
+export type Tool_Categories_Min_Order_By = {
+  category_id?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  tool_id?: InputMaybe<Order_By>;
 };
 
 /** response of any mutation on the table "tool_categories" */
@@ -4883,8 +5000,10 @@ export type Tool_Categories_On_Conflict = {
 
 /** Ordering options when selecting data from "tool_categories". */
 export type Tool_Categories_Order_By = {
+  category?: InputMaybe<Categories_Order_By>;
   category_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  tool?: InputMaybe<Tools_Order_By>;
   tool_id?: InputMaybe<Order_By>;
 };
 
@@ -4946,7 +5065,11 @@ export type Tool_Categories_Updates = {
 export type Tool_Languages = {
   __typename?: 'tool_languages';
   id: Scalars['uuid']['output'];
+  /** An object relationship */
+  language: Languages;
   language_id: Scalars['uuid']['output'];
+  /** An object relationship */
+  tool: Tools;
   tool_id: Scalars['uuid']['output'];
 };
 
@@ -4955,6 +5078,17 @@ export type Tool_Languages_Aggregate = {
   __typename?: 'tool_languages_aggregate';
   aggregate?: Maybe<Tool_Languages_Aggregate_Fields>;
   nodes: Array<Tool_Languages>;
+};
+
+export type Tool_Languages_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Tool_Languages_Aggregate_Bool_Exp_Count>;
+};
+
+export type Tool_Languages_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Tool_Languages_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Tool_Languages_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
 };
 
 /** aggregate fields of "tool_languages" */
@@ -4972,13 +5106,29 @@ export type Tool_Languages_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+/** order by aggregate values of table "tool_languages" */
+export type Tool_Languages_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Tool_Languages_Max_Order_By>;
+  min?: InputMaybe<Tool_Languages_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "tool_languages" */
+export type Tool_Languages_Arr_Rel_Insert_Input = {
+  data: Array<Tool_Languages_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Tool_Languages_On_Conflict>;
+};
+
 /** Boolean expression to filter rows from the table "tool_languages". All fields are combined with a logical 'AND'. */
 export type Tool_Languages_Bool_Exp = {
   _and?: InputMaybe<Array<Tool_Languages_Bool_Exp>>;
   _not?: InputMaybe<Tool_Languages_Bool_Exp>;
   _or?: InputMaybe<Array<Tool_Languages_Bool_Exp>>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
+  language?: InputMaybe<Languages_Bool_Exp>;
   language_id?: InputMaybe<Uuid_Comparison_Exp>;
+  tool?: InputMaybe<Tools_Bool_Exp>;
   tool_id?: InputMaybe<Uuid_Comparison_Exp>;
 };
 
@@ -4991,7 +5141,9 @@ export enum Tool_Languages_Constraint {
 /** input type for inserting data into table "tool_languages" */
 export type Tool_Languages_Insert_Input = {
   id?: InputMaybe<Scalars['uuid']['input']>;
+  language?: InputMaybe<Languages_Obj_Rel_Insert_Input>;
   language_id?: InputMaybe<Scalars['uuid']['input']>;
+  tool?: InputMaybe<Tools_Obj_Rel_Insert_Input>;
   tool_id?: InputMaybe<Scalars['uuid']['input']>;
 };
 
@@ -5003,12 +5155,26 @@ export type Tool_Languages_Max_Fields = {
   tool_id?: Maybe<Scalars['uuid']['output']>;
 };
 
+/** order by max() on columns of table "tool_languages" */
+export type Tool_Languages_Max_Order_By = {
+  id?: InputMaybe<Order_By>;
+  language_id?: InputMaybe<Order_By>;
+  tool_id?: InputMaybe<Order_By>;
+};
+
 /** aggregate min on columns */
 export type Tool_Languages_Min_Fields = {
   __typename?: 'tool_languages_min_fields';
   id?: Maybe<Scalars['uuid']['output']>;
   language_id?: Maybe<Scalars['uuid']['output']>;
   tool_id?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** order by min() on columns of table "tool_languages" */
+export type Tool_Languages_Min_Order_By = {
+  id?: InputMaybe<Order_By>;
+  language_id?: InputMaybe<Order_By>;
+  tool_id?: InputMaybe<Order_By>;
 };
 
 /** response of any mutation on the table "tool_languages" */
@@ -5030,7 +5196,9 @@ export type Tool_Languages_On_Conflict = {
 /** Ordering options when selecting data from "tool_languages". */
 export type Tool_Languages_Order_By = {
   id?: InputMaybe<Order_By>;
+  language?: InputMaybe<Languages_Order_By>;
   language_id?: InputMaybe<Order_By>;
+  tool?: InputMaybe<Tools_Order_By>;
   tool_id?: InputMaybe<Order_By>;
 };
 
@@ -5100,18 +5268,73 @@ export type Tools = {
   id: Scalars['uuid']['output'];
   is_free?: Maybe<Scalars['Boolean']['output']>;
   is_maintained?: Maybe<Scalars['Boolean']['output']>;
+  og_data: Scalars['jsonb']['output'];
   repository_url?: Maybe<Scalars['String']['output']>;
   stars?: Maybe<Scalars['Int']['output']>;
   tags: Scalars['jsonb']['output'];
   title: Scalars['String']['output'];
+  /** An array relationship */
+  tool_categories: Array<Tool_Categories>;
+  /** An aggregate relationship */
+  tool_categories_aggregate: Tool_Categories_Aggregate;
+  /** An array relationship */
+  tool_languages: Array<Tool_Languages>;
+  /** An aggregate relationship */
+  tool_languages_aggregate: Tool_Languages_Aggregate;
   updated_at: Scalars['timestamptz']['output'];
   website_url?: Maybe<Scalars['String']['output']>;
 };
 
 
 /** columns and relationships of "tools" */
+export type ToolsOg_DataArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "tools" */
 export type ToolsTagsArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "tools" */
+export type ToolsTool_CategoriesArgs = {
+  distinct_on?: InputMaybe<Array<Tool_Categories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Tool_Categories_Order_By>>;
+  where?: InputMaybe<Tool_Categories_Bool_Exp>;
+};
+
+
+/** columns and relationships of "tools" */
+export type ToolsTool_Categories_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Tool_Categories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Tool_Categories_Order_By>>;
+  where?: InputMaybe<Tool_Categories_Bool_Exp>;
+};
+
+
+/** columns and relationships of "tools" */
+export type ToolsTool_LanguagesArgs = {
+  distinct_on?: InputMaybe<Array<Tool_Languages_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Tool_Languages_Order_By>>;
+  where?: InputMaybe<Tool_Languages_Bool_Exp>;
+};
+
+
+/** columns and relationships of "tools" */
+export type ToolsTool_Languages_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Tool_Languages_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Tool_Languages_Order_By>>;
+  where?: InputMaybe<Tool_Languages_Bool_Exp>;
 };
 
 /** aggregated selection of "tools" */
@@ -5146,6 +5369,7 @@ export type Tools_Aggregate_FieldsCountArgs = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Tools_Append_Input = {
+  og_data?: InputMaybe<Scalars['jsonb']['input']>;
   tags?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -5169,10 +5393,15 @@ export type Tools_Bool_Exp = {
   id?: InputMaybe<Uuid_Comparison_Exp>;
   is_free?: InputMaybe<Boolean_Comparison_Exp>;
   is_maintained?: InputMaybe<Boolean_Comparison_Exp>;
+  og_data?: InputMaybe<Jsonb_Comparison_Exp>;
   repository_url?: InputMaybe<String_Comparison_Exp>;
   stars?: InputMaybe<Int_Comparison_Exp>;
   tags?: InputMaybe<Jsonb_Comparison_Exp>;
   title?: InputMaybe<String_Comparison_Exp>;
+  tool_categories?: InputMaybe<Tool_Categories_Bool_Exp>;
+  tool_categories_aggregate?: InputMaybe<Tool_Categories_Aggregate_Bool_Exp>;
+  tool_languages?: InputMaybe<Tool_Languages_Bool_Exp>;
+  tool_languages_aggregate?: InputMaybe<Tool_Languages_Aggregate_Bool_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   website_url?: InputMaybe<String_Comparison_Exp>;
 };
@@ -5185,16 +5414,19 @@ export enum Tools_Constraint {
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Tools_Delete_At_Path_Input = {
+  og_data?: InputMaybe<Array<Scalars['String']['input']>>;
   tags?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Tools_Delete_Elem_Input = {
+  og_data?: InputMaybe<Scalars['Int']['input']>;
   tags?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Tools_Delete_Key_Input = {
+  og_data?: InputMaybe<Scalars['String']['input']>;
   tags?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -5214,10 +5446,13 @@ export type Tools_Insert_Input = {
   id?: InputMaybe<Scalars['uuid']['input']>;
   is_free?: InputMaybe<Scalars['Boolean']['input']>;
   is_maintained?: InputMaybe<Scalars['Boolean']['input']>;
+  og_data?: InputMaybe<Scalars['jsonb']['input']>;
   repository_url?: InputMaybe<Scalars['String']['input']>;
   stars?: InputMaybe<Scalars['Int']['input']>;
   tags?: InputMaybe<Scalars['jsonb']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
+  tool_categories?: InputMaybe<Tool_Categories_Arr_Rel_Insert_Input>;
+  tool_languages?: InputMaybe<Tool_Languages_Arr_Rel_Insert_Input>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
   website_url?: InputMaybe<Scalars['String']['input']>;
 };
@@ -5265,6 +5500,13 @@ export type Tools_Mutation_Response = {
   returning: Array<Tools>;
 };
 
+/** input type for inserting object relation for remote table "tools" */
+export type Tools_Obj_Rel_Insert_Input = {
+  data: Tools_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Tools_On_Conflict>;
+};
+
 /** on_conflict condition type for table "tools" */
 export type Tools_On_Conflict = {
   constraint: Tools_Constraint;
@@ -5283,10 +5525,13 @@ export type Tools_Order_By = {
   id?: InputMaybe<Order_By>;
   is_free?: InputMaybe<Order_By>;
   is_maintained?: InputMaybe<Order_By>;
+  og_data?: InputMaybe<Order_By>;
   repository_url?: InputMaybe<Order_By>;
   stars?: InputMaybe<Order_By>;
   tags?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
+  tool_categories_aggregate?: InputMaybe<Tool_Categories_Aggregate_Order_By>;
+  tool_languages_aggregate?: InputMaybe<Tool_Languages_Aggregate_Order_By>;
   updated_at?: InputMaybe<Order_By>;
   website_url?: InputMaybe<Order_By>;
 };
@@ -5298,6 +5543,7 @@ export type Tools_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Tools_Prepend_Input = {
+  og_data?: InputMaybe<Scalars['jsonb']['input']>;
   tags?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -5321,6 +5567,8 @@ export enum Tools_Select_Column {
   IsFree = 'is_free',
   /** column name */
   IsMaintained = 'is_maintained',
+  /** column name */
+  OgData = 'og_data',
   /** column name */
   RepositoryUrl = 'repository_url',
   /** column name */
@@ -5346,6 +5594,7 @@ export type Tools_Set_Input = {
   id?: InputMaybe<Scalars['uuid']['input']>;
   is_free?: InputMaybe<Scalars['Boolean']['input']>;
   is_maintained?: InputMaybe<Scalars['Boolean']['input']>;
+  og_data?: InputMaybe<Scalars['jsonb']['input']>;
   repository_url?: InputMaybe<Scalars['String']['input']>;
   stars?: InputMaybe<Scalars['Int']['input']>;
   tags?: InputMaybe<Scalars['jsonb']['input']>;
@@ -5391,6 +5640,7 @@ export type Tools_Stream_Cursor_Value_Input = {
   id?: InputMaybe<Scalars['uuid']['input']>;
   is_free?: InputMaybe<Scalars['Boolean']['input']>;
   is_maintained?: InputMaybe<Scalars['Boolean']['input']>;
+  og_data?: InputMaybe<Scalars['jsonb']['input']>;
   repository_url?: InputMaybe<Scalars['String']['input']>;
   stars?: InputMaybe<Scalars['Int']['input']>;
   tags?: InputMaybe<Scalars['jsonb']['input']>;
@@ -5425,6 +5675,8 @@ export enum Tools_Update_Column {
   IsFree = 'is_free',
   /** column name */
   IsMaintained = 'is_maintained',
+  /** column name */
+  OgData = 'og_data',
   /** column name */
   RepositoryUrl = 'repository_url',
   /** column name */
